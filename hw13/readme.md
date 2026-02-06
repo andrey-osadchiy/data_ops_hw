@@ -105,7 +105,7 @@ kubectl label node dev-control-plane ingress-ready=true
 ```bash
 kubectl -n ingress-nginx port-forward svc/ingress-nginx-controller 8080:80
 ```
-
+![Скриншот](screenshots/5.png)
 Проверка доступа:
 ```bash
 curl --header "Host: example.com" http://127.0.0.1:8080/
@@ -136,7 +136,10 @@ kubectl get service
 kubectl get ingress
 curl --header "Host: example.com" http://127.0.0.1:8080/
 ```
-
+![Скриншот](screenshots/1.png)
+![Скриншот](screenshots/2.png)
+![Скриншот](screenshots/3.png)
+![Скриншот](screenshots/4.png)
 ## Итог
 В ходе выполнения ДЗ:
 - реализован и контейнеризирован веб-сервис
