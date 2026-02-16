@@ -127,14 +127,16 @@ helm list
 ```yaml
 kubectl get pods
 ```
+
+![Скриншот](screenshots/2.png)
 Список ingress:
 ```yaml
 kubectl get ingress
 ```
-![Скриншот](screenshots/1.png)
-![Скриншот](screenshots/2.png)
+![Скриншот](screenshots/3.png)
 Итог
 
+![Скриншот](screenshots/1.png)
 В ходе выполнения ДЗ15:
 - создан Helm-чарт для hello-world приложения
 - реализована параметризация версии образа
