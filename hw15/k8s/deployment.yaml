@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dz13-backend
+  labels:
+    app: dz13-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dz13-backend
+  template:
+    metadata:
+      labels:
+        app: dz13-backend
+    spec:
+      volumes:
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 128Mi
+      containers:
+        - name: backend
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "300m"
+              memory: "256Mi"
+          volumeMounts:
+            - name: shm
+              mountPath: /dev/shm    
+          image: andreosadchy/dz13-backend:v1
+          ports:
+            - containerPort: 8000
+
+          # Startup — даём приложению "прогреться"
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 5
+            failureThreshold: 30
+
+          # Readiness — готов ли принимать трафик
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+
+          # Liveness — жив ли вообще
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 2
+            failureThreshold: 3
