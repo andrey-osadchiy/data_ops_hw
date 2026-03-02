@@ -9,7 +9,7 @@ __Тема: Работа с БД в ML-проектах__
 
 ### Run DB
 docker compose up -d
-
+![Скриншот](screenshots/1.png)
 ### Apply migrations
 export $(cat .env | xargs)
 python -m yoyo apply --database "$DB_URL" -b ./migrations
