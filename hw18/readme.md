@@ -5,7 +5,6 @@ __Тема: Работа с БД в ML-проектах__
 - научиться писать миграции баз данных в ML проектах на примере библиотеки yoyo-migrations
 
   
-## DZ18 — DB migrations with yoyo
 
 ### Запускаем DB
 docker compose up -d
