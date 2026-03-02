@@ -52,3 +52,8 @@ docker exec -it dz18-postgres psql -U mluser -d mldb -c "\d users"
 откатываем и проверяем
 ![Скриншот](screenshots/5.png)
 ![Скриншот](screenshots/6.png)
+откатываем и вновь проверяем
+![Скриншот](screenshots/7.png)
+
+Отлично, всё получилось! 
+
