@@ -7,15 +7,17 @@ __Тема: Работа с БД в ML-проектах__
   
 ## DZ18 — DB migrations with yoyo
 
-### Run DB
+### Запускаем DB
 docker compose up -d
-![Скриншот](screenshots/1.png)
+
 ### Apply migrations
 export $(cat .env | xargs)
 python -m yoyo apply --database "$DB_URL" -b ./migrations
-
+![Скриншот](screenshots/3.png)
 ### Rollback last migration
 python -m yoyo rollback --database "$DB_URL" -b ./migrations
-
+![Скриншот](screenshots/4.png)
 ### Check schema
 docker exec -it dz18-postgres psql -U mluser -d mldb -c "\d users"
+![Скриншот](screenshots/5.png)
+![Скриншот](screenshots/6.png)
