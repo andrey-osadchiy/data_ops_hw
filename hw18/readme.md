@@ -10,14 +10,20 @@ __Тема: Работа с БД в ML-проектах__
 ### Запускаем DB
 docker compose up -d
 
-### Apply migrations
+### Создаём миграцию
+```bash
 export $(cat .env | xargs)
 python -m yoyo apply --database "$DB_URL" -b ./migrations
+```
 ![Скриншот](screenshots/3.png)
-### Rollback last migration
+### Rollback откатываем
+```bash
 python -m yoyo rollback --database "$DB_URL" -b ./migrations
+```
 ![Скриншот](screenshots/4.png)
-### Check schema
+### Проверяем новую миграцию
+```bash
 docker exec -it dz18-postgres psql -U mluser -d mldb -c "\d users"
+```
 ![Скриншот](screenshots/5.png)
 ![Скриншот](screenshots/6.png)
