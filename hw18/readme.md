@@ -79,4 +79,5 @@ docker exec -it dz18-postgres psql -U mluser -d mldb -c "\d users"
 ![Скриншот](screenshots/7.png)
 
 Отлично, всё получилось! 
+Все файлы с миграциями можно посмотреть [тут](https://github.com/andrey-osadchiy/data_ops_hw/tree/main/hw18/migrations)
 
