@@ -1,9 +1,0 @@
-services:
-  jph:
-    build: .
-    container_name: jph
-    env_file: .env
-    ports:
-      - "8000:8000"
-    environment:
-      # 
