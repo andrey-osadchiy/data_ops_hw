@@ -127,7 +127,7 @@ http://localhost:3000
 В Grafana был создан datasource:
 ![Скриншот](screenshots/3.png)
 
-Dashboard
+### Dashboard
 Был создан dashboard с графиками.
 ![Скриншот](screenshots/4.png)
 
