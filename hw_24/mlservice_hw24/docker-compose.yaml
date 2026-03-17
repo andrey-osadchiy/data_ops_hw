@@ -1,0 +1,6 @@
+services:
+  mlservice:
+    build: .
+    container_name: mlservice-hw24
+    ports:
+      - "8000:8000"
