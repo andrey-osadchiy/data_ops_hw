@@ -4,25 +4,3 @@ services:
     container_name: mlservice-hw24
     ports:
       - "8000:8000"
-
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus-hw25
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml:ro
-
-  grafana:
-    image: grafana/grafana
-    container_name: grafana-hw25
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env
-
-  node-exporter:
-    image: prom/node-exporter
-    container_name: node-exporter-hw25
-    ports:
-      - "9100:9100"
