@@ -673,6 +673,65 @@ http://localhost:3000
 Был создан dashboard с графиками.
 ![Скриншот](docs/06-monitoring/4.png)
 
+
+
 Отлично, всё получилось!
 
 # __Задание 7: k8s__
+
+На данном этапе ML-сервис был развернут в Kubernetes с использованием базовых объектов:
+- Deployment
+- Service
+- Ingress
+
+Также были добавлены проверки состояния контейнера:
+- startupProbe
+- readinessProbe
+- livenessProbe
+
+⸻
+Конфигурация
+Kubernetes-манифесты находятся в:
+```text
+07-k8s/mlservice/
+```
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+
+### Deployment
+
+Основные параметры:
+- образ: andreosadchy/mlservice-hw24:latest
+- порт: 8000
+- реплики: 1
+
+Проверки состояния:
+```yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8000
+
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8000
+```
+
+### Service
+```yaml
+type: ClusterIP
+port: 80 → 8000
+```
+
+### Ingress
+```yaml
+host: mlservice.local
+```
+
