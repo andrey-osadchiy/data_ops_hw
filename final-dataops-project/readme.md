@@ -289,3 +289,86 @@ DAG запускается вручную через интерфейс Airflow.
 Из скриншотов видно, вдаг отработал успшено.
 
 Отлично, всё получилось!
+
+
+## __Задание 3: LakeFS__
+
+В рамках задания была поднята локальная инфраструктура:
+
+- **PostgreSQL** — метаданные lakeFS
+- **MinIO** — S3-совместимое объектное хранилище
+- **lakeFS** — система версионирования данных
+- **lakectl** — CLI для работы с lakeFS
+
+```bash
+docker compose up -d
+```
+Для начала поднимаем Postgres
+![Скриншот](docs/03-lakefs/1.png)
+
+Далее поднимаем Minio
+![Скриншот](docs/03-lakefs/2.png)
+
+Заходим в Minio
+![Скриншот](docs/03-lakefs/3.png)
+
+- MinIO Console -  http://localhost:9001
+- MinIO S3 API - http://localhost:9000
+
+Создаём бакет lakefs
+![Скриншот](docs/03-lakefs/4.png)
+
+Поднимаем Lakefs
+![Скриншот](docs/03-lakefs/5.png)
+
+При первом запуске был выполнен setup:
+```bash
+http://localhost:8000/setup
+```
+В процессе настройки были созданы:
+	•	Access Key
+	•	Secret Key
+  
+Вводим данные и получаем credidentials
+![Скриншот](docs/03-lakefs/6.png)
+![Скриншот](docs/03-lakefs/7.png)
+![Скриншот](docs/03-lakefs/8.png)
+
+Эти ключи использовались для настройки CLI
+
+После создаём репозиторий
+![Скриншот](docs/03-lakefs/9.png)
+![Скриншот](docs/03-lakefs/10.png)
+
+Была создана новая ветка
+```bash
+featone
+```
+Она используется как рабочая ветка для изменения данных.
+
+![Скриншот](docs/03-lakefs/11.png)
+
+В репозиторий был добавлен новый файл:
+```bash
+echo "hello lakefs" > firstrepo/data.txt
+```
+
+Изменения были зафиксированы в lakeFS:
+![Скриншот](docs/03-lakefs12.png)
+
+После compare main и featone был сделан merge
+![Скриншот](docs/03-lakefs/13.png)
+
+Итоговая структура репозитория
+
+В ветке main находятся:
+```bash
+README.md
+data.txt
+data/
+images/
+lakes.parquet
+```
+![Скриншот](docs/03-lakefs/14.png)
+
+Отлично, всё получилось!
