@@ -41,7 +41,7 @@ Python script / Jupyter
 ```
 
 ```bash
-mlflow-hw/
+01-mlflow/
 ├── Dockerfile
 ├── docker-compose.yaml
 ├── .env
@@ -166,7 +166,7 @@ Airflow используется для оркестрации и автомат
 
 ### Структура проекта
 ```bash
-airflow-hw/
+02-airflow
 ├── docker-compose.yaml
 ├── .env
 └── data/
@@ -372,3 +372,67 @@ lakes.parquet
 ![Скриншот](docs/03-lakefs/14.png)
 
 Отлично, всё получилось!
+
+## Задание 4 jupyterhub
+В рамках 4 задания был локально развернут jupyterhub сервер, были запущены в нем инстансы jupyterlab и проведены там исследования
+
+### Структура проекта
+
+```bash
+02-airflow
+│
+├── Dockerfile
+├── docker-compose.yaml
+├── .env
+│
+└── data
+    └── jph
+        └── jupyterhub_config.py
+```
+
+### Dockerfile
+```bash
+python:3.14-slim
+```
+В контейнер устанавливаются:
+- jupyterhub
+- dockerspawner
+- configurable-http-proxy
+- sqlalchemy (<2)
+
+### docker-compose.yaml
+Docker Compose используется для запуска JupyterHub.
+
+Основные параметры:
+- порт 8000
+- подключение docker.sock
+- volume для хранения данных
+- подключение конфигурационного файла JupyterHub
+
+### Переменные окружения (.env)
+
+Файл .env содержит ненастоящие секреты:
+```bash
+JPH_DUMMY_PASSWORD=jphadminpwd
+```
+
+### Сборка контейнера и запуск JupyterHub
+```bash
+docker compose build
+```
+
+```
+docker compose up -d
+```
+![Скриншот](docs/04-jupyterhub/1.png)
+
+### Проверка работы
+После запуска сервис доступен по адресу:
+```bash
+http://localhost:8000
+```
+![Скриншот](docs/04-jupyterhub/2.png)
+залогиниваемся
+![Скриншот](docs/04-jupyterhub/3.png)
+Всё работает, отлично!
+  
