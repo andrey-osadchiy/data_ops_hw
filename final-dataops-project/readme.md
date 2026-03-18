@@ -516,7 +516,7 @@ research/train.ipynb
 
   После выполнения ноутбука в MLflow появился experiment:diabets-experiment
   и зарегистрированная модель:diabets / version 1
-![Скриншот](05-mlservice/docs1.png)
+![Скриншот](docs/05-mlservice/1.png)
 ### Часть 2. Загрузка модели
 
 После регистрации модель была загружена из MLflow и сохранена локально: model/diabets_model.pkl
@@ -553,5 +553,5 @@ http://localhost:8000
 ### Проверка работоспособности
 
 Проверка модели:
-![Скриншот](05-mlservice/docs/2.png)
+![Скриншот](docs/05-mlservice/2.png)
 
