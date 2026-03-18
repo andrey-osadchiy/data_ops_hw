@@ -483,6 +483,7 @@ POST /api/v1/predict
 ```
 
 ## Структура проекта
+```text
 05-mlservice/
 ├── Dockerfile
 ├── docker-compose.yaml
@@ -495,6 +496,7 @@ POST /api/v1/predict
 │   └── server.py
 └── research/
     └── train.ipynb
+```
 
 ### Часть 1. Обучение и регистрация модели
 ```text
