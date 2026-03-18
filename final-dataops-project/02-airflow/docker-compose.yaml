@@ -1,0 +1,55 @@
+x-airflow: &airflow
+  image: apache/airflow:2.11.0
+  user: "50000:0"
+  networks:
+    - airflow
+  entrypoint: ["/bin/sh", "-c"]
+  volumes:
+    - ./data/airflow:/opt/airflow
+  environment:
+    AIRFLOW_HOME: /opt/airflow
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: ${AIRFLOW__CORE__SQL_ALCHEMY_CONN}
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__LOGGING__LOGGING_LEVEL: "INFO"
+    AIRFLOW__LOGGING__FAB_LOGGING_LEVEL: "WARNING"
+    AIRFLOW__WEBSERVER__WORKERS: "1"
+    AIRFLOW__WEBSERVER__SECRET_KEY: ${APP_SECRET_KEY}
+  depends_on:
+    - db
+
+services:
+  db:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    networks:
+      - airflow
+    environment:
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  airflow.db.init:
+    <<: *airflow
+    command: ["airflow db init"]
+
+  airflow.db.migrate:
+    <<: *airflow
+    command: ["airflow db migrate"]
+
+  airflow.webserver:
+    <<: *airflow
+    ports:
+      - "8080:8080"
+    command: ["airflow webserver"]
+
+  airflow.scheduler:
+    <<: *airflow
+    command: ["airflow scheduler"]
+
+  airflow.triggerer:
+    <<: *airflow
+    command: ["airflow triggerer"]
+
+networks:
+  airflow:
