@@ -752,7 +752,7 @@ host: mlservice.local
 - управлять количеством реплик
 
   Структура
-  ```text
+```text
 08-helm/mlservice-chart/
 ├── Chart.yaml
 ├── values.yaml
@@ -777,13 +777,14 @@ resources:
     memory: 256Mi
 ```
 
-Установка
+__Установка__
 
 ![Скриншот](docs/08-helm/1.png)
 
-Отлично, всё получилось!
+
 
 Проверка
 ![Скриншот](docs/08-helm/2.png)
 ![Скриншот](docs/08-helm/3.png)
 
+Отлично, всё получилось!
