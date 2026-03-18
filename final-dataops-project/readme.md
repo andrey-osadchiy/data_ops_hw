@@ -734,4 +734,55 @@ port: 80 → 8000
 ```yaml
 host: mlservice.local
 ```
+![Скриншот](docs/07-k8s/1.png)
+
+
+Результаты запуска
+![Скриншот](docs/07-k8s/2.png)
+
+Отлично, всё получилось!
+
+# __Задание 8: Helm chart__
+
+Для упрощения деплоя ML-сервиса был создан Helm chart.
+
+Он позволяет:
+- управлять версией Docker-образа
+- настраивать ресурсы (CPU, memory)
+- управлять количеством реплик
+
+  Структура
+  ```text
+08-helm/mlservice-chart/
+├── Chart.yaml
+├── values.yaml
+└── templates/
+    ├── deployment.yaml
+    └── service.yaml
+  ```
+Параметры (values.yaml)
+```yaml
+replicaCount: 1
+
+image:
+  repository: andreosadchy/mlservice-hw24
+  tag: latest
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+```
+
+Установка
+
+![Скриншот](docs/08-helm/1.png)
+
+
+Результаты запуска
+![Скриншот](docs/08-helm/2.png)
+![Скриншот](docs/08-helm/3.png)
 
